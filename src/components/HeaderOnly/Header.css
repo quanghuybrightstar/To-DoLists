@@ -1,0 +1,18 @@
+
+.App__header {
+    background-color: #444;
+    padding: 20px 0; 
+    margin: 0 auto;
+    width: 100%;
+    text-align: center;
+}
+
+.App__logo {
+    width: 75px;
+}
+
+.header__title {
+    font-size: 2rem;
+    color: #fff;
+    margin-bottom: 0;
+}
