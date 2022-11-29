@@ -1,0 +1,64 @@
+.todo__input {
+    
+}
+.todo__heading {
+    text-align: center;
+}
+
+.input__content {
+    padding: 2rem;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+}
+
+.input__main {
+    position: relative;
+    display: flex;
+    margin: 0 0 20px;
+}
+
+.input__icon {
+    display: flex;
+    align-items: center;
+    color: var(--white-color);
+    background-color: var(--primary-color);
+    padding: 6px 12px;
+    font-size: 1.6rem;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+    border: 1px solid var(--border-color);
+}
+
+.input__new {
+    display: flex;
+    position: relative;
+    flex: 1;
+    height: 34px;
+    border: 1px solid var(--border-color);
+    padding: 2px 8px;
+    font-size: 1.6rem;
+}
+
+.input__new:focus {
+    outline: 1px solid var(--primary-color);
+}
+
+.input__btn {
+    width: 100%;
+    background-color: var(--primary-color);
+    border: var(--primary-color);
+    color: var(--white-color);
+    padding: 10px 0;
+    border-radius: 3px;
+    font-size: 1.6rem;
+}
+
+.input__btn:hover {
+    color: var(--white-color);
+    background-color: var(--hover-color);
+    border-color: var(--hover-color);
+}
+
+.btn--add {
+    cursor: pointer;
+}

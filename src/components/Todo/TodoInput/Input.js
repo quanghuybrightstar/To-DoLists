@@ -1,48 +1,37 @@
-import { useReducer, useRef } from "react";
-import reducer, { initState } from "./reducer";
-import { setJob, addJob } from "./action";
-import "./Input.css";
+import classNames from "classnames/bind";
+import { memo } from "react";
 
-function Input() {
-    const [state, dispatch] = useReducer(reducer, initState);
-    
-    const { job, jobs } = state;
+import style from './Input.module.scss'
 
-  const jobRef = useRef();
+const cx = classNames.bind(style)
 
-  const handleSubmit = () => {
-    dispatch(addJob(job))
-    dispatch(setJob(''))
-
-    jobRef.current.focus();
-  }
-
+function Input({jobRef, jobTitle, handleChange, handleSubmit, editJob}) {
   return (
-    <div className="todo__input">
-      <h3 className="todo__heading">Todo Input</h3>
-      <div className="input__content">
-        <div className="input__main">
-          <i class="fa-solid fa-book input__icon"></i>
-          <input
-            className="input__new"
-            type="text"
-            ref={jobRef}
-            value={job}
-            placeholder="Enter New Todo "
-            onChange={(e) => {
-              dispatch(setJob(e.target.value));
-            }}
-          />
+    <div className = {cx('todo__input')}>
+      <h3 className= {cx('todo__heading')}>Todo Input</h3>
+      <form onSubmit={handleSubmit} className ={cx('input__content')}>
+        <div className = {cx('input__main')}>
+            <div className= {cx('input__icon')}>
+              <i className = "fa-solid fa-book"></i>
+            </div>
+            <input
+              ref = {jobRef}
+              className = {cx('input__new')}
+              type = "text"
+              placeholder = "Enter new job"
+              value = {jobTitle}
+              onChange = {handleChange}
+            />
         </div>
         <button 
-            onClick={handleSubmit}
-            className="input__btn"
-            >
-            Add new task
+              type="submit"
+              className = {cx(`input__btn`)}
+              >
+              {editJob ? 'Edit Job' : 'Add new Job'}
         </button>
-      </div>
+      </form>
     </div>
   );
 }
 
-export default Input;
+export default memo(Input);

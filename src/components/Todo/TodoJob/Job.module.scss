@@ -1,0 +1,54 @@
+.list__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    padding: 15px 25px;
+    margin-top: 18px;
+}
+
+//Item Name
+.item__name > h6 {
+    margin: 0;
+    font-size: 1.6rem;
+    font-weight: 500;
+}
+
+.item__name--active {
+    color: #333;
+}
+
+.item__name--done {
+    color: var(--danger-color);
+    text-decoration: line-through;
+}
+
+// Item Icon
+.item__icon {
+    font-size: 1.7rem;
+}
+
+.item__icon > span > i {
+    cursor: pointer;
+}
+.item__icon > span > i:hover {
+    opacity: 0.7;
+}
+
+.text--secondary {
+    color: var(--border-color);
+}
+.text--success {
+    color: #28a745;
+}
+
+.item__icon-edit {
+    color: #ffc107;
+    margin-left: 15px;
+}
+
+.item__icon-delete {
+    color: var(--danger-color);
+    margin-left: 15px;
+}

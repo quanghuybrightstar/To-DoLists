@@ -1,30 +1,54 @@
-function List() {
+import classNames from 'classnames/bind';
+import style from './List.module.scss'
+import { memo } from 'react';
+
+const cx = classNames.bind(style);
+
+function List({children, updateJobsToShow}) {
     return (
-        <div className="todo__list">
-            <h3 className="input__heading">Todo Input</h3>
-            <div className="list__content">
-                <div className="category">
-                    <ul className="category__list">
-                        <li className="category__item">
-                            <button>
+        <div className = {cx('todo__list')}>
+            <h3 className={cx('todo__heading')}>Todo List</h3>
+            <div className = {cx('list__content')}>
+                <div className = {cx('category')}>
+                    <div className="row">
+                        <div className="col col-1-3">
+                            <button  
+                                className={cx('category-btn')}
+                                onClick = {() => {
+                                    updateJobsToShow('all');
+                                }}
+                                >
                                 All
                             </button>
-                        </li>
-                        <li className="category__item">
-                            <button>
+                        </div>
+                        <div className="col col-1-3">
+                            <button 
+                                className={cx('category-btn')}
+                                onClick = {() => {
+                                    updateJobsToShow('active');
+                                }}
+                            >
                                 Active
                             </button>
-                        </li>
-                        <li className="category__item">
-                            <button>
+                        </div>
+                        <div className="col col-1-3">
+                            <button 
+                                className={cx('category-btn')}
+                                onClick = {() => {
+                                    updateJobsToShow('done');
+                                }}
+                            >
                                 Done
                             </button>
-                        </li>
-                    </ul>
+                        </div>
+                    </div>
                 </div>
+                {
+                    children
+                }
             </div>
         </div>
     )
 }
 
-export default List;
+export default memo(List);
