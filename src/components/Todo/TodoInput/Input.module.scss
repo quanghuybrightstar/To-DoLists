@@ -1,6 +1,4 @@
-.todo__input {
-    
-}
+
 .todo__heading {
     text-align: center;
 }
@@ -17,6 +15,7 @@
     margin: 0 0 20px;
 }
 
+//Input icon
 .input__icon {
     display: flex;
     align-items: center;
@@ -59,6 +58,3 @@
     border-color: var(--hover-color);
 }
 
-.btn--add {
-    cursor: pointer;
-}

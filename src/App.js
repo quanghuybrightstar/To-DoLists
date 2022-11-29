@@ -10,6 +10,7 @@ import reducer, {setJob, addJob, deleteJob, setJobs, logger} from '~/components/
 
 function App() {
   
+  //initialize state for reducer
   const initState = {
     job: {
       id: uuidv4(),
@@ -33,6 +34,7 @@ function App() {
     dispatch(setJob(e.target.value));
   }  
 
+  //update type of job: all/active/done
   const updateJobsToShow = string => {
     state.jobsToShow = string;
     let items = [];
@@ -47,6 +49,7 @@ function App() {
     console.log(string);
   }
   
+  //handle submit add new job or edit job
   const handleSubmit = (e) => {
     e.preventDefault();
     state.id = uuidv4();
@@ -72,9 +75,6 @@ function App() {
     }
 
     jobRef.current.focus();
-    // console.log(items);
-    // console.log(jobs);
-    // console.log(id);
   }
   // console.log(jobs);
 
@@ -90,6 +90,7 @@ function App() {
     // console.log(jobs);
   }
 
+  //handle edit event
   const handleEdit = (id) => {
     const filteredJobs = jobs.filter(job => job.id !== id);
     const selectedJob = jobs.filter(job => job.id === id);
@@ -101,6 +102,7 @@ function App() {
     state.editJob = true;
   }
 
+  //handle delete job with delete icon
   const handleDelete = (id) => {
     const filteredJobs = jobs.filter(job => job.id !== id);
     dispatch(setJobs(filteredJobs));
@@ -113,6 +115,32 @@ function App() {
 
   const handleClearList = () => { 
     dispatch(setJobs([]));
+  }
+
+  //save reference for dragItem and dragOverItem
+  const dragItem = useRef(null);
+  const dragOverItem = useRef(null);
+
+  //const handle drag sorting
+  const handleSort = () => {
+      //duplicate items
+      let listJobs = [...jobs]
+      console.log(listJobs);
+
+      //remove and save the dragged item content
+      const draggedJobContent = listJobs.splice(dragItem.current, 1)[0];
+
+      //switch the position
+      listJobs.splice(dragOverItem.current, 0, draggedJobContent)
+
+      //reset the postition
+      dragItem.current = null;
+      dragOverItem.current = null;
+
+      //update the actual list
+      dispatch(setJobs(listJobs))
+      console.log('drag ended');
+      console.log(listJobs);
   }
 
   
@@ -149,6 +177,9 @@ function App() {
                   handleDoneJob = {handleDoneJob}
                   handleEdit = {handleEdit}
                   handleDelete = {handleDelete}
+                  dragItem = {dragItem}
+                  dragOverItem = {dragOverItem}
+                  handleSort = {handleSort}
                   />
                 }
 

@@ -1,18 +1,23 @@
 import classNames from 'classnames/bind';
+import { useRef } from 'react';
 import { memo } from 'react';
 import style from './Job.module.scss'
 
 const cx = classNames.bind(style);
 
-function Job({jobs, handleDelete, handleEdit, handleDoneJob}) {
+function Job({jobs, handleDelete, handleEdit, handleDoneJob, dragItem, dragOverItem, handleSort}) {
 
     return ( 
-    jobs.map(job => {
+    jobs.map((job, index) => {
         return (
             <li
                 key={job.id}
                 className = {cx('list__item')}
                 draggable
+                onDragStart={(e) => dragItem.current = index}
+                onDragEnter={(e) => dragOverItem.current = index}
+                onDragEnd={handleSort}
+                onDragOver = {e => e.preventDefault()}
             >
                 <div className={cx('item__name')}>
                     <h6 className= {cx(`${job.completed ? 'item__name--done' : 'item__name--active'}`)}>
